@@ -1,4 +1,4 @@
-
+package com.lambda;
 public class WorkerUsingLambda {
 
 	public static void main(String[] args) {
