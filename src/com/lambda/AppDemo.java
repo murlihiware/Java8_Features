@@ -116,6 +116,9 @@ public class AppDemo {
 			return n1 + n2 + count;
 		};*/
 		
+		//small example for method reference
+		runner.run(Utility::sum);
+		
 
 	}
 
