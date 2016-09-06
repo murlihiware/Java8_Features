@@ -19,7 +19,12 @@ public class StreamOperations {
 	 */
 	public static void main(String[] args) {
 
-		List<Transaction> transactions = new ArrayList<Transaction>();
+		List<Transaction> transactions = createTransactions();
+		Transaction maxTransaction1 = getMaxGroceryTransaction(transactions);
+		System.out.println(maxTransaction1.getValue());
+		
+		Transaction maxTransaction2 = getMaxGroceryTransactionJava8(transactions);
+		System.out.println(maxTransaction2.getValue());
 
 	}
 	
@@ -36,7 +41,7 @@ public class StreamOperations {
 			
 			@Override
 			public int compare(Transaction t1, Transaction t2) {
-				return Integer.compare(t1.getValue(), t2.getValue());
+				return Integer.compare(t2.getValue(), t1.getValue());
 			}
 			});
 		return groceryTransactions.get(0);
@@ -44,8 +49,10 @@ public class StreamOperations {
 	
 	public static Transaction getMaxGroceryTransactionJava8(List<Transaction> transactions)
 	{
-		//transactions.stream().filter(t -> t.getType()==Transaction.TYPE_GROCERY).sorted().collect();
-	    return null;
+		return (Transaction) transactions.stream().filter(t -> t.getType()==Transaction.TYPE_GROCERY)
+		.sorted((Transaction t1, Transaction t2)-> 
+		Integer.compare(t2.getValue(), t1.getValue())).toArray()[0];
+	    
 	}
 	
 	
