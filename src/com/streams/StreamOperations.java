@@ -22,7 +22,7 @@ public class StreamOperations {
 
 		List<Transaction> transactions = createTransactions();
 		Integer maxTransactionID1 = getMaxGroceryTransaction(transactions);
-		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID1+ " Using Java 7");
+		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID1+ " Before Java 8");
 		
 		Integer maxTransactionID2 = getMaxGroceryTransactionJava8(transactions);
 		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID2+ " Using Java 8");
