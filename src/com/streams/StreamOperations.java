@@ -50,7 +50,7 @@ public class StreamOperations {
 	public static Transaction getMaxGroceryTransactionJava8(List<Transaction> transactions)
 	{
 		return (Transaction) transactions.stream().filter(t -> t.getType()==Transaction.TYPE_GROCERY)
-		.sorted((Transaction t1, Transaction t2)-> 
+		.sorted((t1, t2)-> 
 		Integer.compare(t2.getValue(), t1.getValue())).toArray()[0];
 	    
 	}
