@@ -23,10 +23,14 @@ public class StreamOperations {
 
 		List<Transaction> transactions = createTransactions();
 		
+		Integer maxTransactionID1 = getMaxGroceryTransaction(transactions);
+		
+		
 		/*
 		 * SELECT id, MAX(value) from transactions where type='GROCERY';
+		 * As you can see, we don’t need to implement how to calculate the maximum value 
+		 * (for example, using loops and a variable to track the highest value). We only express what we expect
 		 */
-		Integer maxTransactionID1 = getMaxGroceryTransaction(transactions);
 		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID1+ " Before Java 8");
 		
 //		Integer maxTransactionID2 = getMaxGroceryTransactionJava8(transactions);
@@ -71,17 +75,25 @@ public class StreamOperations {
 		//Stream Operations Are Lazy
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
 		List<Integer> twoEvenSquares = 
-		    numbers.stream()
-		           .filter(n -> {
-		                    System.out.println("filtering " + n); 
-		                    return n % 2 == 0;
-		                  })
-		           .map(n -> {
-		                    System.out.println("mapping " + n);
-		                    return n * n;
-		                  })
+		    numbers.stream() // real use of default method, if there wouldn't have been default methods in Interfaces every collection has to implement this method
+		           .filter(n -> n % 2 == 0)
+		           .map(n -> n * n)
 		           .limit(2)
 		           .collect(Collectors.toList());
+		
+		
+		/*List<Integer> twoEvenSquares = 
+			    numbers.stream()
+			           .filter(n -> {
+			                    System.out.println("filtering " + n); 
+			                    return n % 2 == 0;
+			                  })
+			           .map(n -> {
+			                    System.out.println("mapping " + n);
+			                    return n * n;
+			                  })
+			           .limit(2)
+			           .collect(Collectors.toList());*/
 	}
 	
 	
