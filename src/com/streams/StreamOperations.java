@@ -22,6 +22,10 @@ public class StreamOperations {
 	public static void main(String[] args) {
 
 		List<Transaction> transactions = createTransactions();
+		
+		/*
+		 * SELECT id, MAX(value) from transactions where type='GROCERY';
+		 */
 		Integer maxTransactionID1 = getMaxGroceryTransaction(transactions);
 		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID1+ " Before Java 8");
 		
