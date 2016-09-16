@@ -76,12 +76,13 @@ public class StreamOperations {
 	
 	public static Integer getMaxGroceryTransactionJava8(List<Transaction> transactions)
  {
+		//definition of below operations you can find in java.util.stream.Stream Interface
 		return transactions.stream()
 				.filter(t -> t.getType() == Transaction.TYPE_GROCERY)
 				.sorted(Comparator.comparing(Transaction::getId).reversed())
 				.map(t -> t.getId())
-				.collect(Collectors.toList())
-				.get(0);
+				.findFirst().get();
+				
 
 	}
 	
