@@ -5,7 +5,7 @@
   * Lambdas
   * Streams
   * JavaFX
-  * Java Time API
+  * Java Date-Time API
   * Javascript Nashorn engine
   * Concurrency API improvement.
   
