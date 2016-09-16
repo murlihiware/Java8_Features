@@ -29,32 +29,13 @@ public class StreamOperations {
 		Integer maxTransactionID1 = getMaxGroceryTransaction(transactions);
 		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID1+ " Before Java 8");
 		
-		Integer maxTransactionID2 = getMaxGroceryTransactionJava8(transactions);
-		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID2+ " Using Java 8");
+//		Integer maxTransactionID2 = getMaxGroceryTransactionJava8(transactions);
+//		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID2+ " Using Java 8");
 		
-		getTwoEvenNumbers();
+//		getTwoEvenNumbers();
 
 	}
 
-	public static void getTwoEvenNumbers() {
-		//Stream Operations Are Lazy
-		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
-		List<Integer> twoEvenSquares = 
-		    numbers.stream()
-		           .filter(n -> {
-		                    System.out.println("filtering " + n); 
-		                    return n % 2 == 0;
-		                  })
-		           .map(n -> {
-		                    System.out.println("mapping " + n);
-		                    return n * n;
-		                  })
-		           .limit(2)
-		           .collect(Collectors.toList());
-	}
-	
-	
-	
 	public static Integer getMaxGroceryTransaction(List<Transaction> transactions)
 	{
 		List<Transaction> groceryTransactions = new ArrayList<>();
@@ -85,6 +66,27 @@ public class StreamOperations {
 				
 
 	}
+	
+	public static void getTwoEvenNumbers() {
+		//Stream Operations Are Lazy
+		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+		List<Integer> twoEvenSquares = 
+		    numbers.stream()
+		           .filter(n -> {
+		                    System.out.println("filtering " + n); 
+		                    return n % 2 == 0;
+		                  })
+		           .map(n -> {
+		                    System.out.println("mapping " + n);
+		                    return n * n;
+		                  })
+		           .limit(2)
+		           .collect(Collectors.toList());
+	}
+	
+	
+	
+	
 	
 	
 	
