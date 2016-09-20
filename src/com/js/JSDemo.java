@@ -22,7 +22,7 @@ public class JSDemo {
 	//When Oracle Nashorn is available, its scripting engine is accessible through the nashorn identifier.
 		ScriptEngineManager engineManager = new ScriptEngineManager();
 		ScriptEngine engine = engineManager.getEngineByName("nashorn");
-		engine.eval("function sum(a, b) { return a + b; }");
+		engine.eval("function sum(a, b) { return a + b; }"); // define a sum function
 		System.out.println(engine.eval("sum(1, 2);"));
 	}
 
