@@ -36,7 +36,7 @@ public class StreamOperations {
 //		Integer maxTransactionID2 = getMaxGroceryTransactionJava8(transactions);
 //		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID2+ " Using Java 8");
 		
-//		getTwoEvenNumbers();
+//		getSquareOfTwoEvenNumbers();
 
 	}
 
@@ -71,7 +71,7 @@ public class StreamOperations {
 
 	}
 	
-	public static void getTwoEvenNumbers() {
+	public static void getSquareOfTwoEvenNumbers() {
 		//Stream Operations Are Lazy
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
 		List<Integer> twoEvenSquares = 
