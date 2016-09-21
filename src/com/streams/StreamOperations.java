@@ -23,20 +23,20 @@ public class StreamOperations {
 
 		List<Transaction> transactions = createTransactions();
 		
-		Integer maxTransactionID1 = getMaxGroceryTransaction(transactions);
+		Integer maxTransaction = getMaxGroceryTransaction(transactions);
 		
 		
 		/*
-		 * SELECT id, MAX(value) from transactions where type='GROCERY';
+		 * SELECT MAX(value) from transactions where type='GROCERY';
 		 * As you can see, we don’t need to implement how to calculate the maximum value 
 		 * (for example, using loops and a variable to track the highest value). We only express what we expect
 		 */
-		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID1+ " Before Java 8");
+		System.out.println("Max Transaction(Grocery):"+maxTransaction+ " Before Java 8");
 		
 //		getSquareOfTwoEvenNumbers();
 		
-//		Integer maxTransactionID2 = getMaxGroceryTransactionJava8(transactions);
-//		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID2+ " Using Java 8");
+//		Integer maxTransaction2 = getMaxGroceryTransactionJava8(transactions);
+//		System.out.println("Max Transaction(Grocery):"+maxTransaction2+ " Using Java 8");
 		
 
 	}
@@ -57,7 +57,7 @@ public class StreamOperations {
 				return Integer.compare(t2.getValue(), t1.getValue());
 			}
 			});
-		return groceryTransactions.get(0).getId();
+		return groceryTransactions.get(0).getValue();
 	}
 	
 	public static Integer getMaxGroceryTransactionJava8(List<Transaction> transactions)
@@ -65,7 +65,7 @@ public class StreamOperations {
 		//definition of below operations you can find in java.util.stream.Stream Interface
 		return transactions.stream()
 				.filter(t -> t.getType() == Transaction.TYPE_GROCERY)
-				.map(t -> t.getId())
+				.map(t -> t.getValue())
 				.max((t1, t2) -> Integer.compare(t1, t2)).get(); // max Returns Optional Object => A container object which may or may not contain a non-null value.
 
 
