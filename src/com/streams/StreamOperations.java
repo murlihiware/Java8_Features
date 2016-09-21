@@ -33,10 +33,11 @@ public class StreamOperations {
 		 */
 		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID1+ " Before Java 8");
 		
+//		getSquareOfTwoEvenNumbers();
+		
 //		Integer maxTransactionID2 = getMaxGroceryTransactionJava8(transactions);
 //		System.out.println("Max Transaction(Grocery) ID:"+maxTransactionID2+ " Using Java 8");
 		
-//		getSquareOfTwoEvenNumbers();
 
 	}
 
@@ -64,9 +65,8 @@ public class StreamOperations {
 		//definition of below operations you can find in java.util.stream.Stream Interface
 		return transactions.stream()
 				.filter(t -> t.getType() == Transaction.TYPE_GROCERY)
-				.sorted((t1, t2) -> Integer.compare(t2.getId(), t1.getId())) //reverse order
 				.map(t -> t.getId())
-				.findFirst().get();
+				.max((t1, t2) -> Integer.compare(t1, t2)).get(); // max Returns Optional Object => A container object which may or may not contain a non-null value.
 
 
 	}
