@@ -96,13 +96,14 @@ public class StreamOperations {
 			           .collect(Collectors.toList());*/
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public static void getSumOfIntegers()
+	{
+		
+		int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+		//Specialized stream for int type => IntStream
+		int total = Arrays.stream(numbers).sum();
+		System.out.println("Sum:"+total);
+	}
 	
 	public static List<Transaction> createTransactions()
  {
