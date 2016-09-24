@@ -25,18 +25,32 @@ public class StreamOperations {
 		
 		Integer maxTransaction = getMaxGroceryTransaction(transactions);
 		
+		System.out.println("Max Transaction(Grocery):"+maxTransaction+ " Before Java 8");
 		
 		/*
 		 * SELECT MAX(value) from transactions where type='GROCERY';
 		 * As you can see, we don’t need to implement how to calculate the maximum value 
 		 * (for example, using loops and a variable to track the highest value). We only express what we expect
 		 */
-		System.out.println("Max Transaction(Grocery):"+maxTransaction+ " Before Java 8");
 		
 //		getSquareOfTwoEvenNumbers();
 		
 //		Integer maxTransaction2 = getMaxGroceryTransactionJava8(transactions);
 //		System.out.println("Max Transaction(Grocery):"+maxTransaction2+ " Using Java 8");
+		
+
+		List<Trade> trades = createTrades();
+		Integer minPrice = getMinPriceOfOptionTrade(trades);
+		System.out.println("Min Price of Option Trade:"+minPrice);
+		/*
+		 * SELECT min(price) from trades where type='OPTION';
+		 * As you can see, we don’t need to implement how to calculate the minimum value 
+		 * (for example, using loops and a variable to track the lowest value). 
+		 * We only express what we expect
+		 */
+		
+		Integer minPrice2 = getMinPriceOfOptionTradeJava8(trades);
+		System.out.println("Min Price of Option Trade:"+minPrice2 + " Using Java 8");
 		
 
 	}
@@ -124,6 +138,95 @@ public class StreamOperations {
 		return transactions;
 	}
 
+	public static Integer getMinPriceOfOptionTrade(List<Trade> trades)
+	{
+		List<Trade> optionTrades = new ArrayList<>();
+
+		for (Trade trade : trades) {
+			if (trade.getType() == Trade.TYPE_OPTION)
+				optionTrades.add(trade);
+		}
+		Collections.sort(optionTrades, new Comparator<Trade>(){
+
+			@Override
+			public int compare(Trade t1, Trade t2) {
+				return Integer.compare(t1.getPrice(), t2.getPrice());
+			}
+		});
+		
+		return optionTrades.get(0).getPrice();
+	}
+	
+	public static Integer getMinPriceOfOptionTradeJava8(List<Trade> trades)
+	{
+		return trades.stream()
+		.filter(t-> t.getType()==Trade.TYPE_OPTION)
+		.map(t-> t.getPrice())
+		.min((t1,t2)->Integer.compare(t1, t2)).get();
+	}
+	
+	public static List<Trade> createTrades()
+	{
+		List<Trade> trade = new ArrayList<>();
+		trade.add(new Trade(1, Trade.TYPE_FUTURE, 10000));
+		trade.add(new Trade(2, Trade.TYPE_FUTURE, 12000));
+		trade.add(new Trade(3, Trade.TYPE_SWAP, 990));
+		trade.add(new Trade(4, Trade.TYPE_SWAP, 690));
+		trade.add(new Trade(5, Trade.TYPE_OPTION, 790));
+		trade.add(new Trade(6, Trade.TYPE_OPTION, 890));
+		trade.add(new Trade(7, Trade.TYPE_FUTURE, 11890));
+		trade.add(new Trade(8, Trade.TYPE_OPTION, 1890));
+		trade.add(new Trade(9, Trade.TYPE_OPTION, 90));
+		trade.add(new Trade(10, Trade.TYPE_OPTION, 290));
+		return trade;
+	}
+}
+
+
+class Trade
+
+{
+	public static final int TYPE_FUTURE=1;
+	public static final int TYPE_OPTION=2;
+	public static final int TYPE_SWAP=2;
+	
+	private int id;
+	private int type;
+	private int price;
+	
+	public Trade(int id, int type, int price) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.price = price;
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	
 }
 
 
