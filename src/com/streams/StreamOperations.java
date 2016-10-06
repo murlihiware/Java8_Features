@@ -21,24 +21,31 @@ public class StreamOperations {
 	 */
 	public static void main(String[] args) {
 
-		List<Transaction> transactions = createTransactions();
-		
-		Integer maxTransaction = getMaxGroceryTransaction(transactions);
-		
-		System.out.println("Max Transaction(Grocery):"+maxTransaction+ " Before Java 8");
-		
+
+        getSquareOfTwoEvenNumbers();
+
+
+
+
+
+
+
+
+        /*List<Transaction> transactions = createTransactions();
+
+        Integer maxTransaction = getMaxGroceryTransaction(transactions);
+
+        System.out.println("Max Transaction(Grocery):" + maxTransaction + " Before Java 8");*/
+
 		/*
 		 * SELECT MAX(value) from transactions where type='GROCERY';
-		 * As you can see, we don’t need to implement how to calculate the maximum value 
+		 * As you can see, we donï¿½t need to implement how to calculate the maximum value 
 		 * (for example, using loops and a variable to track the highest value). We only express what we expect
 		 */
-		
-//		getSquareOfTwoEvenNumbers();
-		
 //		Integer maxTransaction2 = getMaxGroceryTransactionJava8(transactions);
 //		System.out.println("Max Transaction(Grocery):"+maxTransaction2+ " Using Java 8");
-		
-	}
+
+    }
 
 	public static Integer getMaxGroceryTransaction(List<Transaction> transactions)
 	{
@@ -71,29 +78,31 @@ public class StreamOperations {
 	}
 	
 	public static void getSquareOfTwoEvenNumbers() {
-		//Stream Operations Are Lazy
-		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
-		List<Integer> twoEvenSquares = 
-		    numbers.stream() // real use of default method, if there wouldn't have been default methods in Interfaces every collection has to implement this method
+        //Stream Operations Are Lazy
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        numbers.stream()
+                .filter(n -> {
+                    System.out.println("filtering " + n);
+                    return n % 2 == 0;
+                })
+                .map(n -> {
+                    System.out.println("mapping " + n);
+                    return n * n;
+                })
+                .limit(2)
+                .collect(Collectors.toList());
+
+
+		/*List<Integer> twoEvenSquares =
+            numbers.stream() // real use of default method, if there wouldn't have been default methods in Interfaces every collection has to implement this method
 		           .filter(n -> n % 2 == 0)
 		           .map(n -> n * n)
 		           .limit(2)
 		           .collect(Collectors.toList());
-		
-		
-		/*List<Integer> twoEvenSquares = 
-			    numbers.stream()
-			           .filter(n -> {
-			                    System.out.println("filtering " + n); 
-			                    return n % 2 == 0;
-			                  })
-			           .map(n -> {
-			                    System.out.println("mapping " + n);
-			                    return n * n;
-			                  })
-			           .limit(2)
-			           .collect(Collectors.toList());*/
-	}
+*/
+
+
+    }
 	
 	public static void getSumOfIntegers()
 	{
@@ -172,7 +181,7 @@ public class StreamOperations {
  * getMinPriceOfOptionTrade(trades);
  * System.out.println("Min Price of Option Trade:"+minPrice);
  * 
- * SELECT min(price) from trades where type='OPTION'; As you can see, we don’t
+ * SELECT min(price) from trades where type='OPTION'; As you can see, we donï¿½t
  * need to implement how to calculate the minimum value (for example, using
  * loops and a variable to track the lowest value). We only express what we
  * expect
