@@ -31,7 +31,7 @@ public class Main extends Application {
 	        AnchorPane page = (AnchorPane) loader.load();
 	        Stage dialogStage = new Stage();
 	        Scene scene = new Scene(page);
-	        scene.getStylesheets().add("application.css");
+	        scene.getStylesheets().add("com/jfx/kbDemo/application.css");
 	        dialogStage.setScene(scene);
 	        BirthdayStatisticsController controller = loader.getController();
 	        dialogStage.show();
