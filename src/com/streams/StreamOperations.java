@@ -78,7 +78,7 @@ public class StreamOperations {
 	}
 	
 	public static void getSquareOfTwoEvenNumbers() {
-        //Stream Operations Are Lazy
+        //Stream Operations Are Lazy and supports short-circuiting
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
         numbers.stream()
                 .filter(n -> {
