@@ -38,21 +38,6 @@ public class StreamOperations {
 //		Integer maxTransaction2 = getMaxGroceryTransactionJava8(transactions);
 //		System.out.println("Max Transaction(Grocery):"+maxTransaction2+ " Using Java 8");
 		
-
-		List<Trade> trades = createTrades();
-		Integer minPrice = getMinPriceOfOptionTrade(trades);
-		System.out.println("Min Price of Option Trade:"+minPrice);
-		/*
-		 * SELECT min(price) from trades where type='OPTION';
-		 * As you can see, we don’t need to implement how to calculate the minimum value 
-		 * (for example, using loops and a variable to track the lowest value). 
-		 * We only express what we expect
-		 */
-		
-		Integer minPrice2 = getMinPriceOfOptionTradeJava8(trades);
-		System.out.println("Min Price of Option Trade:"+minPrice2 + " Using Java 8");
-		
-
 	}
 
 	public static Integer getMaxGroceryTransaction(List<Transaction> transactions)
@@ -182,6 +167,20 @@ public class StreamOperations {
 	}
 }
 
+/** Example
+ * List<Trade> trades = createTrades(); Integer minPrice =
+ * getMinPriceOfOptionTrade(trades);
+ * System.out.println("Min Price of Option Trade:"+minPrice);
+ * 
+ * SELECT min(price) from trades where type='OPTION'; As you can see, we don’t
+ * need to implement how to calculate the minimum value (for example, using
+ * loops and a variable to track the lowest value). We only express what we
+ * expect
+ * 
+ * 
+ * Integer minPrice2 = getMinPriceOfOptionTradeJava8(trades);
+ * System.out.println("Min Price of Option Trade:"+minPrice2 + " Using Java 8");
+ */
 
 class Trade
 
