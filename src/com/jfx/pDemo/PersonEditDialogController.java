@@ -1,4 +1,4 @@
-package com.jfx;
+package com.jfx.pDemo;
 
 
 import javafx.fxml.FXML;
